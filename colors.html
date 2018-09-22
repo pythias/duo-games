@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>多课程 - 练习使用鼠标</title>
+</head>
+
+<body>
+    <canvas id="gameContainer" width="480" height="480" style="position:fixed;left:4px;top:4px;width:480px;height:480px;border:1px solid #d3d3d3;">
+        Your browser does not support the HTML5 canvas tag.
+    </canvas>
+    <span id="message" style="position:fixed;top:4px;left:488px;width:172px;height:480px;border:1px solid #d3d3d3;background-color:black;color:white;font-size:20pt;">
+
+    </span>
+        
+    <script>
+        var game = function() {
+            var colors = ["Blue", "Green", "Red", "Yellow", "Black", "Gray", "Purple", "Orange"];
+
+            var colorRect = function() {
+                this.canvas = undefined;
+                this.color = "";
+                this.left = 0;
+                this.top = 0;
+                this.width = 50;
+                this.height = 50;
+                this.fill = function() {
+                    if (this.canvas == undefined) {
+                        this.canvas = eContainer.getContext("2d");
+                    }
+
+                    this.canvas.fillStyle = this.color
+                    this.canvas.fillRect(this.left, this.top, this.width, this.height);
+                }
+                this.reset = function() {
+                    if (this.canvas == undefined) {
+                        this.canvas = eContainer.getContext("2d");
+                    }
+
+                    this.canvas.clearRect(this.left, this.top, this.width, this.height);
+                }
+            }
+
+            var colorRects = [];
+            var eContainer, eMessage, rectCount;
+
+            var init = function() {
+                rectCount = 4;
+                eContainer = document.getElementById("gameContainer");
+                eMessage = document.getElementById("message");
+
+                for (let i = 0; i < rectCount; i++) {
+                    colorRects.push(new colorRect());
+                }
+            }
+
+            var randomColors = function() {
+                var randoms = {};
+                for (let i = 0; i < rectCount; i++) {
+                    var colorIndex = Math.floor(Math.random() * colors.length);
+                    while (1) {
+                        if (randoms[colorIndex] == undefined) {
+                            randoms[colorIndex] = true;
+                            break;
+                        }
+                        colorIndex = Math.floor(Math.random() * colors.length);
+                    }
+                    colorRects[i].color = colors[colorIndex];
+                }
+            }
+
+            var randomPositions = function() {
+                for (let i = 0; i < rectCount; i++) {
+                    colorRects[i].left = Math.floor(50 + Math.random() * (eContainer.width - 100));
+                    colorRects[i].top = Math.floor(50 + Math.random() * (eContainer.height - 100));
+                }
+            }
+
+            var render = function() {
+                for (let i = 0; i < rectCount; i++) {
+                    colorRects[i].fill();
+                }
+
+                eMessage.innerText = colorRects[0].color;
+                eMessage.style.background = colorRects[0].color;
+            }
+
+            var newRound = function() {
+                for (let i = 0; i < rectCount; i++) {
+                    colorRects[i].reset();
+                }
+                
+                randomColors();
+                randomPositions();
+                render();
+            }
+
+            var start = function() {
+                init();
+                newRound();
+
+                eContainer.addEventListener('click', function(e) {
+                    if (e.clientX >= (colorRects[0].left + e.target.offsetLeft) && e.clientX <= (colorRects[0].left + e.target.offsetLeft + colorRects[0].width) && e.clientY >= (colorRects[0].top + e.target.offsetTop) && e.clientY <= (colorRects[0].top + e.target.offsetTop + colorRects[0].height)) {
+                        newRound();
+                    }
+                }, false);
+            }
+
+            start();
+        }
+
+        game();
+    </script> 
+</body>
+</html>
