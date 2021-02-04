@@ -98,7 +98,7 @@ const countResult = function (event) {
 
         Object.keys(record.groups).forEach(function (leader) {
             const group = record.groups[leader];
-            const diff = (eachMember * group.members) - group.prepayments;
+            const diff = ((eachMember * group.members) - group.prepayments).toFixed(2);
             const html = `<li class="list-group-item text-` + (diff < 0 ? 'success' : 'danger') + `">
                 <span class="list-title text-break">` + leader + `&nbsp;<strong>` + (diff < 0 ? '可得退款' : '需要补缴') + `</strong>&nbsp;<small>` + Math.abs(diff) + `元</span>
             </li>`;
