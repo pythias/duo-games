@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多工具 - 团队AA</title>
+
+    <meta content="telephone=no" name="format-detection">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+</head>
+<body>
+<!-- Page Header -->
+<header>
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb bg-light" style="padding: 0.75rem 1rem;margin-bottom: 1rem;">
+            <li class="breadcrumb-item"><span class="text-decoration-none">欢迎使用团队AA工具</span></li>
+        </ol>
+    </nav>
+</header>
+<div class="container">
+    <!-- jQuery and Bootstrap Bundle -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/tools-aa.js"></script>
+
+    <div class="position-fixed top-0 start-0" style="z-index: 1080; margin: 0.75rem">
+        <div id="toast" class="toast d-flex align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body text-warning text-break">
+                Hello, world!
+            </div>
+            <button type="button" class="btn-close ms-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+
+    <div id="group-header">
+        <div class="alert alert-secondary" role="alert">新增团队</div>
+        <form class="row needs-validation" id="form-add-group">
+            <div class="input-group mb-1">
+                <span class="input-group-text" id="leader-name">领队名称</span>
+                <input type="text" class="form-control" id="input-leader" placeholder="请输入领队名称" aria-label="请输入领队名称" aria-describedby="leader-name" minlength="2" maxlength="10" required>
+            </div>
+
+            <div class="input-group mb-1">
+                <span class="input-group-text" id="group-members">团队人数</span>
+                <input type="number" class="form-control" id="input-members" placeholder="请输入团队人数" aria-label="请输入团队人数" aria-describedby="group-members" min="1" max="10000" required>
+            </div>
+
+            <div class="input-group mb-1">
+                <span class="input-group-text" id="group-prepayments">预付款项</span>
+                <input type="number" class="form-control" id="input-prepayments" placeholder="请输入预付款" aria-label="请输入预付款" aria-describedby="group-prepayments" min="0" max="100000000" step="0.01" required>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="btn-group w-100" role="group">
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="btn-add">
+                    <svg class="bi bi-person-plus-fill" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                    </svg>
+                    点击添加
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4"></div>
+
+    <div id="group-content">
+        <div class="alert alert-info" role="alert">团队配置</div>
+        <ul class="list-group mb-1" id="groups"></ul>
+        <form class="row needs-validation" id="form-count-group">
+            <div class="input-group mb-1">
+                <span class="input-group-text" id="group-amount">本次费用</span>
+                <input type="number" class="form-control" id="input-amount" placeholder="请输入本次费用" aria-label="请输入本次费用" aria-describedby="group-amount" min="0" max="100000000" step="0.01" required>
+                <button class="btn btn-outline-info" type="button" id="btn-count">计算</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row mt-4"></div>
+
+    <div id="group-result">
+        <div class="row mt-1"></div>
+        <div class="alert alert-primary d-flex w-100 justify-content-between" role="alert">
+            <h5 class="mb-1 mt-1">计算结果</h5>
+            <span class="mb-1 mt-1">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard btn-outline-primary" id="btn-copy" viewBox="0 0 16 16">
+                      <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                      <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                    </svg>
+                </span>
+            </span>
+        </div>
+        <ul class="list-group mb-1" id="results"></ul>
+    </div>
+</div>
+
+</body>
+</html>
