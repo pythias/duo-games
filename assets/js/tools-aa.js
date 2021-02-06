@@ -128,7 +128,7 @@ const onCountClick = function (event) {
     //计算和排序
     Object.keys(record.groups).forEach(function (leader) {
         const group = record.groups[leader];
-        group.diff = (eachMember * group.members) - group.prepayments;
+        group.diff = group.prepayments - (eachMember * group.members);
     });
     var sortedGroups = Object.keys(record.groups).map(function (leader) {
         return [leader, record.groups[leader].diff];
