@@ -239,4 +239,6 @@ $(document).ready(function () {
     $(document).on("click", "#btn-copy", onCopyClick);
     $(document).on("change", ".input-group:has(input:input) input:input", onInputChanged);
     $(document).on("keypress", ".input-group:has(input:input) input:input", onKeyPressed);
+
+    console.log("多工具 - 团队AA v1.3")
 });
