@@ -15,7 +15,7 @@
 <header>
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb bg-light" style="padding: 0.75rem 1rem;margin-bottom: 1rem;">
-            <li class="breadcrumb-item"><span class="text-decoration-none">欢迎使用团队AA工具</span></li>
+            <li class="breadcrumb-item"><span class="text-decoration-none">欢迎使用团队AA工具 v1.0</span></li>
         </ol>
     </nav>
 </header>
@@ -35,11 +35,10 @@
     </div>
 
     <div id="group-header">
-        <div class="alert alert-secondary" role="alert">新增团队</div>
         <form class="row needs-validation" id="form-add-group">
             <div class="input-group mb-1">
                 <span class="input-group-text" id="leader-name">领队名称</span>
-                <input type="text" class="form-control" id="input-leader" placeholder="请输入领队名称" aria-label="请输入领队名称" aria-describedby="leader-name" minlength="2" maxlength="10" required>
+                <input type="text" class="form-control " id="input-leader" placeholder="请输入领队名称" aria-label="请输入领队名称" aria-describedby="leader-name" minlength="1" maxlength="10" required>
             </div>
 
             <div class="input-group mb-1">
@@ -51,41 +50,47 @@
                 <span class="input-group-text" id="group-prepayments">预付款项</span>
                 <input type="number" class="form-control" id="input-prepayments" placeholder="请输入预付款" aria-label="请输入预付款" aria-describedby="group-prepayments" min="0" max="100000000" step="0.01" required>
             </div>
-        </form>
 
-        <div class="row">
-            <div class="btn-group w-100" role="group">
-                <button type="button" class="btn btn-outline-secondary btn-sm" id="btn-add">
+            <div class="input-group btn-group w-100 mb-1">
+                <button type="button" class="btn btn-outline-primary btn-sm" id="btn-add">
                     <svg class="bi bi-person-plus-fill" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                         <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
                     </svg>
-                    点击添加
+                    添加
                 </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mt-4"></div>
-
-    <div id="group-content">
-        <div class="alert alert-info" role="alert">团队配置</div>
-        <ul class="list-group mb-1" id="groups"></ul>
-        <form class="row needs-validation" id="form-count-group">
-            <div class="input-group mb-1">
-                <span class="input-group-text" id="group-amount">本次费用</span>
-                <input type="number" class="form-control" id="input-amount" placeholder="请输入本次费用" aria-label="请输入本次费用" aria-describedby="group-amount" min="0" max="100000000" step="0.01" required>
-                <button class="btn btn-outline-info" type="button" id="btn-count">计算</button>
+                <button type="button" class="btn btn-outline-warning btn-sm" id="btn-reset">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel btn-outline-secondary" viewBox="0 0 16 16">
+                        <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+                    </svg>
+                    清空
+                </button>
+                <button type="button" class="btn btn-outline-success btn-sm" id="btn-count">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">
+                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                    </svg>
+                    计算
+                </button>
             </div>
         </form>
     </div>
 
-    <div class="row mt-4"></div>
+    <div class="row mt-2"></div>
+
+    <div id="group-content">
+        <div class="alert alert-info d-flex w-100 justify-content-between mb-1" role="alert">
+            <span class="mb-1 mt-1">团队配置&nbsp;&nbsp;<small class="mb-1 mt-1" id="info-amount"></small></span>
+            
+        </div>
+        <ul class="list-group mb-1" id="groups"></ul>
+    </div>
+
+    <div class="row mt-2"></div>
 
     <div id="group-result">
         <div class="row mt-1"></div>
-        <div class="alert alert-primary d-flex w-100 justify-content-between" role="alert">
-            <span class="mb-1 mt-1">计算结果</span>
+        <div class="alert alert-primary d-flex w-100 justify-content-between mb-1" role="alert">
+            <span class="mb-1 mt-1">计算结果&nbsp;&nbsp;<small class="mb-1 mt-1" id="info-each"></small></span>
             <span class="mb-1 mt-1">
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard btn-outline-primary" id="btn-copy" viewBox="0 0 16 16">
