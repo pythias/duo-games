@@ -86,9 +86,11 @@ const onAddClick = function (event) {
             </li>`;
 
         $("#groups").append(html);
-        $("#info-amount").html('总金额 ' + fixed(record.amount) + ' 元');
+        $("#info-amount").html('总金额 ' + fixed(record.amount) + ' 元，总人数 ' + record.members);
         $("#info-each").html('人均 ' + fixed(record.amount / record.members) + ' 元');
         $("#results").html('');
+        $("#input-leader").focus();
+        inputChanged = false;
     });
 }
 
@@ -103,7 +105,7 @@ const onRemoveGroupClick = function (event) {
     const item = target.closest('.list-group-item');
     item.detach();
 
-    $("#info-amount").html('总金额 ' + fixed(record.amount) + ' 元');
+    $("#info-amount").html('总金额 ' + fixed(record.amount) + ' 元，总人数 ' + record.members);
     $("#info-each").html('人均 ' + fixed(record.amount / record.members) + ' 元');
     $("#results").html('');
 }
@@ -225,7 +227,6 @@ const onKeyPressed = function (event) {
         $(event.target).parent().next().find('input').focus();
         if ($(event.target)[0].id == 'input-prepayments') {
             $('#btn-add').click();
-            $("#input-leader").focus();
         }
     }
 }
